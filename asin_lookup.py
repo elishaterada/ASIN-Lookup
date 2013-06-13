@@ -36,7 +36,7 @@ def asin_lookup(product_name):
             query_result_asin = copy.copy(query_result)
             matched_asin_string = query_result_asin.get('name')
 
-            # Get Movie Title
+            # Get Product Name
             query_result_title = copy.copy(query_result)
             matched_product_name = query_result_title.find("div", attrs={'class': 'productTitle'}).get_text()
 
@@ -51,7 +51,7 @@ def main(argv=None):
 
     #0 Parse options and user input
     if len(argv) < 2:
-        print "Please enter a movie title to lookup"
+        print "Please enter product name to lookup"
         exit()
 
     product_name = argv[1]
