@@ -12,14 +12,14 @@ from bs4 import BeautifulSoup
 # Query ASIN on Amazon
 
 
-def asin_lookup(movie_title):
+def asin_lookup(product_name):
 
 
     # Convert spaces to pluses
-    query_movie_title = movie_title.replace(' ', '+')
+    query_product_name = product_name.replace(' ', '+')
 
     # Query the movie title on Amazon.com
-    asin_query_url = "http://www.amazon.com/s/?url=search-alias%3Daps&field-keywords=" + query_movie_title + "&rh=i%3Aaps%2Ck%3A" + query_movie_title
+    asin_query_url = "http://www.amazon.com/s/?url=search-alias%3Daps&field-keywords=" + query_product_name + "&rh=i%3Aaps%2Ck%3A" + query_product_name
 
     try:
         soup = BeautifulSoup(urllib2.urlopen(asin_query_url))
@@ -38,9 +38,9 @@ def asin_lookup(movie_title):
 
             # Get Movie Title
             query_result_title = copy.copy(query_result)
-            matched_movie_title = query_result_title.find("div", attrs={'class': 'productTitle'}).get_text()
+            matched_product_name = query_result_title.find("div", attrs={'class': 'productTitle'}).get_text()
 
-            print matched_asin_string + " - " + matched_movie_title + "\n"
+            print matched_asin_string + " - " + matched_product_name + "\n"
 
     return
 
@@ -54,10 +54,10 @@ def main(argv=None):
         print "Please enter a movie title to lookup"
         exit()
 
-    movie_title = argv[1]
+    product_name = argv[1]
 
     #1 Query for keywords
-    asin_lookup(movie_title)
+    asin_lookup(product_name)
 
 if __name__ == "__main__":
     sys.exit(main())
