@@ -24,7 +24,7 @@ def asin_lookup(product_name):
     try:
         soup = BeautifulSoup(urllib2.urlopen(asin_query_url))
     except urllib2.HTTPError:
-        print "URL could not be opened"
+        print("URL could not be opened")
         return None
     else:
         # Look through first three results
@@ -40,7 +40,7 @@ def asin_lookup(product_name):
             query_result_title = copy.copy(query_result)
             matched_product_name = query_result_title.find("div", attrs={'class': 'productTitle'}).get_text()
 
-            print matched_asin_string + " - " + matched_product_name + "\n"
+            print(matched_asin_string + " - " + matched_product_name + "\n")
 
     return
 
@@ -51,7 +51,7 @@ def main(argv=None):
 
     #0 Parse options and user input
     if len(argv) < 2:
-        print "Please enter product name to lookup"
+        print("Please enter product name to lookup")
         exit()
 
     product_name = argv[1]
